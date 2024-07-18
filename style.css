@@ -1,0 +1,309 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.over {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 200mm;
+  height: 100mm;
+  margin: 0;
+  padding: 0;
+}
+.mont {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 27mm);
+  grid-template-rows: repeat(1, 6mm);
+  gap: 1mm;
+  margin-bottom: 0.5mm;
+  text-align: center;
+}
+
+.under {
+  display: grid;
+  grid-template-columns: repeat(7, 27mm);
+  grid-template-rows: repeat(6, 25mm);
+  gap: 1mm;
+}
+.date {
+  border: 0.5mm black solid;
+  border-radius: 8px;
+  padding-top: 1mm;
+  padding-left: 2.5mm;
+  transition: all 0.3s ease;
+}
+
+.day {
+  border: 0.5mm gray solid;
+  border-radius: 15px;
+  position: relative;
+}
+
+.over img {
+  position: relative;
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 15px;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#imageInput {
+  width: 30mm;
+  height: 8mm;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.topknapp {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+.custom-file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 35px;
+  color: white;
+  background-color: #2c88d9;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.colorpick-eyedropper-input-trigger {
+  display: none;
+}
+
+#colorPicker {
+  --picked-color: #ffffff;
+  width: 50px;
+  height: 35px;
+  border: none;
+  appearance: none;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+#colorPicker::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  content: "A"; /* Texten som visas */
+  font-size: 30px; /* Storlek på texten */
+  color: currentColor;
+}
+
+#colorPicker::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: currentColor;
+}
+
+/* Dölj den ursprungliga färgväljaren och visa bara den anpassade */
+#colorPicker::-webkit-color-swatch-wrapper {
+  padding: 0;
+  display: none;
+}
+
+#colorPicker::-webkit-color-swatch {
+  border: none;
+  display: none;
+}
+
+#yearSelect {
+  width: 140px;
+  font-size: 20px;
+}
+#monthSelect {
+  width: 140px;
+  font-size: 20px;
+}
+
+.month-display {
+  font-size: 18mm; /* Anpassa storlek enligt behov */
+  color: black; /* Börjar som vit, kan ändras av användaren */
+  top: 5px;
+}
+
+.year-display {
+  margin-left: 15px;
+  font-size: 18mm;
+  color: black;
+  top: 5px;
+}
+
+.red-day {
+  background-color: red;
+  color: white;
+  position: relative;
+}
+
+.holiday-name {
+  display: block;
+  font-size: 0.8em;
+  color: black;
+  margin-left: -10px;
+  font-weight: 700;
+}
+
+#printButton {
+  width: 100px;
+  height: 35px;
+  font-size: 20px;
+  background-color: #2c88d9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+@media print {
+  #printButton {
+    display: none;
+  }
+  h1 {
+    display: none;
+  }
+  .topknapp {
+    display: none;
+  }
+  .red-day {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    background-color: red !important;
+    color: white !important;
+  }
+  .knapp,
+  .inputs,
+  #imageInput {
+    visibility: hidden;
+  }
+  .top {
+    margin-top: 5px;
+    margin: auto;
+  }
+  @page {
+    margin: 0;
+    margin-top: 3mm;
+    size: auto;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .over,
+  .days,
+  .under::first-letter {
+    content: "";
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* Anpassa för mobilversionen */
+
+  .days {
+    grid-template-columns: repeat(7, 10mm);
+    grid-template-rows: repeat(1, 4mm);
+    font-size: 8px;
+  }
+  .under {
+    grid-template-columns: repeat(7, 10mm);
+    grid-template-rows: repeat(6, 8mm);
+  }
+  .over {
+    width: 85%;
+    height: 90%;
+  }
+
+  .month-display,
+  .year-display {
+    font-size: 25px;
+  }
+
+  .holiday-name {
+    visibility: hidden;
+  }
+  .topknapp {
+    margin: auto;
+    width: 80%;
+    height: 30px;
+    margin-bottom: 5px;
+    gap: 5px;
+  }
+  #yearSelect {
+    width: 100px;
+    font-size: 10px;
+  }
+  #monthSelect {
+    width: 100px;
+    font-size: 10px;
+  }
+  .custom-file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 30px;
+    color: white;
+    background-color: #2c88d9;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+  }
+  #colorPicker {
+    --picked-color: #ffffff;
+    width: 50px;
+    height: 25px;
+    border: none;
+    margin-top: 3px;
+    appearance: none;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+  }
+  #colorPicker::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    content: "A"; /* Texten som visas */
+    font-size: 20px; /* Storlek på texten */
+    color: currentColor;
+  }
+  #printButton {
+    width: 50px;
+    height: 30px;
+    font-size: 10px;
+    background-color: #2c88d9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+}
